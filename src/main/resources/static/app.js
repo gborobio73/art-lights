@@ -14,7 +14,7 @@ function setConnected(connected) {
 
 function connect() {
 //	var socket = new SockJS('/gs-guide-websocket');
-	var socket = new WebSocket('ws://' + window.location.hostname +':' +window.location.port + '/gs-guide-websocket');
+	var socket = new WebSocket('wss://' + window.location.hostname +':' +window.location.port + '/gs-guide-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
