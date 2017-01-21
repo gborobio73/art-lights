@@ -1,4 +1,4 @@
-package hello;
+package com.leeloo.lights.application;
 
 public class HelloMessage {
 

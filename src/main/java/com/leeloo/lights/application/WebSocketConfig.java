@@ -1,4 +1,4 @@
-package hello;
+package com.leeloo.lights.application;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

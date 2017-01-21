@@ -1,4 +1,4 @@
-package hello;
+package com.leeloo.lights.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

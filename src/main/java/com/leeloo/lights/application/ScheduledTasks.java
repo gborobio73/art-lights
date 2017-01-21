@@ -1,4 +1,4 @@
-package hello;
+package com.leeloo.lights.application;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
