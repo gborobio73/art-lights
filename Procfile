@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar target/gs-messaging-stomp-websocket-0.1.0.jar
