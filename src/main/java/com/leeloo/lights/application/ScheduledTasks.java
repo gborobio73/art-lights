@@ -22,7 +22,7 @@ public class ScheduledTasks {
         this.template = template;
     }
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 5000)
     public void reportCurrentTime() {
     	String text = String.format("The time is now %s", dateFormat.format(new Date()));
     	System.out.println(text);
