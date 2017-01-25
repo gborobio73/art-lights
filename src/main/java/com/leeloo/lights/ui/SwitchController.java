@@ -13,22 +13,32 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping(value="/switch")
 public class SwitchController {
 	
-	@RequestMapping(value="/set", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE) 
+	@RequestMapping(value="/set", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE) 
     public ResponseEntity<?> setSwitch(@RequestBody SwitchDto switchDto) {    	
-		//send it to Iot
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			restTemplate.put("https://agent.electricimp.com/SmkBeMW_hTdc", new IotSwitch(switchDto.getId(), switchDto.getState()));
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (Exception e) {			
 			System.out.println(e.getMessage());
+			throw new LightsException("Exception when calling agent. " + e.getMessage());
 		}
 		
     	return ResponseEntity.ok("OK");
-    	
-		//throw new LightsException("Oh shit!");
-    }
+     }
     
+	@RequestMapping(value="/setall", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE) 
+    public ResponseEntity<?> setAllSwitches(@RequestBody SwitchState state) {    	
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			restTemplate.put("https://agent.electricimp.com/SmkBeMW_hTdc", new IotSwitch(-1, state.getState()));
+		} catch (Exception e) {			
+			System.out.println(e.getMessage());
+			throw new LightsException("Exception when calling agent. " + e.getMessage());
+		}
+		
+    	return ResponseEntity.ok("OK");
+     }
+	
     @GetMapping() 
     public SwitchDto getSwitch() {    	
     	return new SwitchDto(1, true);

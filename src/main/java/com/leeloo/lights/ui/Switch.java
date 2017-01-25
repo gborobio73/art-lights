@@ -2,18 +2,18 @@ package com.leeloo.lights.ui;
 
 public class Switch {
 
-    private String status;
+    private String state;
     private int id;
 
     public Switch() {
     }
 
-    public String getStatus() {
-		return status;
+    public String getState() {
+		return state;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public int getId() {
