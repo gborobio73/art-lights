@@ -12,12 +12,13 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping(value="/switch")
 public class SwitchController {
-	
+	private static String server ="https://agent.electricimp.com/SmkBeMW_hTdc";
+	//private static String server ="https://agent.electricimp.com/SmkBeMW_c";
 	@RequestMapping(value="/set", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE) 
     public ResponseEntity<?> setSwitch(@RequestBody SwitchDto switchDto) {    	
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			restTemplate.put("https://agent.electricimp.com/SmkBeMW_hTdc", new IotSwitch(switchDto.getId(), switchDto.getState()));
+			restTemplate.put(server, new IotSwitch(switchDto.getId(), switchDto.getState()));
 		} catch (Exception e) {			
 			System.out.println(e.getMessage());
 			throw new LightsException("Exception when calling agent. " + e.getMessage());
@@ -30,7 +31,7 @@ public class SwitchController {
     public ResponseEntity<?> setAllSwitches(@RequestBody SwitchState state) {    	
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			restTemplate.put("https://agent.electricimp.com/SmkBeMW_hTdc", new IotSwitch(-1, state.getState()));
+			restTemplate.put(server, new IotSwitch(-1, state.getState()));
 		} catch (Exception e) {			
 			System.out.println(e.getMessage());
 			throw new LightsException("Exception when calling agent. " + e.getMessage());
