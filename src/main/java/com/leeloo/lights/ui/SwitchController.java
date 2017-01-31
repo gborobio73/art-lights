@@ -41,8 +41,21 @@ public class SwitchController {
      }
 	
     @GetMapping() 
-    public SwitchDto getSwitch() {    	
-    	return new SwitchDto(1, true);
+    public Boolean[] getSwitch() {    	
+    	RestTemplate restTemplate = new RestTemplate();
+		try {
+			String switches;
+			switches= restTemplate.getForObject(server, String.class);
+			String[] arraySwitches = switches.replace("[", "").replace("]", "").trim().split(",");
+			Boolean[] switchesDto = new Boolean[arraySwitches.length];
+			for(int i =0; i< arraySwitches.length; i++){
+				switchesDto[i] = Boolean.parseBoolean(arraySwitches[i].trim());
+			}
+			return switchesDto; 
+		} catch (Exception e) {			
+			System.out.println(e.getMessage());
+			throw new LightsException("Exception when calling agent. " + e.getMessage());
+		}
         
     }
 }
