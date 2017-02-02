@@ -1,7 +1,13 @@
 package com.leeloo.lights.ui;
 
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +18,24 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping(value="/switch")
 public class SwitchController {
+	
+	@Autowired
+	private SimpMessagingTemplate template;
+	
 	private static String server ="https://agent.electricimp.com/SmkBeMW_hTdc";
 	//private static String server ="https://agent.electricimp.com/SmkBeMW_c";
 	@RequestMapping(value="/set", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE) 
-    public ResponseEntity<?> setSwitch(@RequestBody SwitchDto switchDto) {    	
+    public ResponseEntity<?> setSwitch(@RequestBody SwitchDto switchDto, HttpServletRequest request) {    	
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			restTemplate.put(server, new IotSwitch(switchDto.getId(), switchDto.getState()));
+			
+			String ipAddress = request.getHeader("X-FORWARDED-FOR") == null ? request.getRemoteAddr(): request.getHeader("X-FORWARDED-FOR");
+			
+			String message = String.format("%s has set switch %d to %s", ipAddress, switchDto.getId() + 1, Boolean.toString(switchDto.getState()));
+			
+			this.template.convertAndSend("/topic/console", new ConsoleMessageDto(message) );
+			
 		} catch (Exception e) {			
 			System.out.println(e.getMessage());
 			throw new LightsException("Exception when calling agent. " + e.getMessage());
