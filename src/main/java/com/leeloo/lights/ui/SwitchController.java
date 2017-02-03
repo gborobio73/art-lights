@@ -35,6 +35,7 @@ public class SwitchController {
 			String message = String.format("%s has set switch %d to %s", ipAddress, switchDto.getId() + 1, Boolean.toString(switchDto.getState()));
 			
 			this.template.convertAndSend("/topic/console", new ConsoleMessageDto(message) );
+			this.template.convertAndSend("/topic/switches", switchDto );
 			
 		} catch (Exception e) {			
 			System.out.println(e.getMessage());

@@ -18,7 +18,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/gs-guide-websocket")
+        registry.addEndpoint("/heklu-websocket")
         	.setAllowedOrigins("http://localhost:3000", "http://localhost:8080", "heklu.herokuapp.com");//.withSockJS();
     }
 
