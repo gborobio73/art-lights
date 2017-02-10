@@ -18,7 +18,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/heklu-websocket")
+        registry.addEndpoint("/heklu-websocket").addInterceptors(new IpHandshakeInterceptor())
         	.setAllowedOrigins("http://localhost:3000", "http://localhost:8080", "heklu.herokuapp.com");//.withSockJS();
     }
 

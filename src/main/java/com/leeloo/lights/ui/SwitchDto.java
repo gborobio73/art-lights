@@ -1,21 +1,21 @@
 package com.leeloo.lights.ui;
 
 public class SwitchDto {
-	private int id;
+	private int index;
 	private boolean state;
 	
 	public SwitchDto() {}
 	
 	public SwitchDto(int id, boolean state) {
-		this.id = id;
+		this.index = id;
 		this.state = state;
 	}
 	
-	public int getId() {
-		return id;
+	public int getIndex() {
+		return index;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIndex(int id) {
+		this.index = id;
 	}
 	public boolean getState() {
 		return state;
