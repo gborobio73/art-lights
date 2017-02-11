@@ -14,7 +14,7 @@ function setConnected(connected) {
 
 function connect() {
 	var protocol = (document.location.protocol === "http:") ? "ws:": "wss:";
-	var socket = new WebSocket(protocol +'//' + window.location.hostname +':' +window.location.port + '/gs-guide-websocket');
+	var socket = new WebSocket(protocol +'//' + window.location.hostname +':' +window.location.port + '/heklu-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
