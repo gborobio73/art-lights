@@ -94,4 +94,12 @@ public class SwitchController {
 		this.template.convertAndSend("/topic/console", new ConsoleMessageDto(message) );
 		this.template.convertAndSend("/topic/switches", switchDto );
     }
+    
+    //heartbeat
+//    @MessageMapping("/ping")
+//    @SendTo("/topic/pong")
+//    public String heartbeat(String ping) throws Exception {
+//        //Thread.sleep(1000); // simulated delay
+//        return "pong";
+//    }
 }
