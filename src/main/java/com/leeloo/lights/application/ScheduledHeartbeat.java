@@ -5,8 +5,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.leeloo.lights.ui.ConsoleMessageDto;
-
 @Component
 public class ScheduledHeartbeat {
 	@Autowired
@@ -14,6 +12,6 @@ public class ScheduledHeartbeat {
 
     @Scheduled(fixedRate = 15000)
     public void reportCurrentTime() {    	
-    	this.template.convertAndSend("/topic/heartbeat", "heartbeat");
+    	this.template.convertAndSend("/topic/heartbeat", "beat");    	
     }
 }
