@@ -13,7 +13,8 @@ public class IpHandshakeInterceptor implements HandshakeInterceptor {
             WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
 
         // Set ip attribute to WebSocket session
-		String ip =request.getRemoteAddress().toString();
+		//String ip =request.getRemoteAddress().toString();
+		String ip = request.getLocalAddress().getAddress().getHostAddress();
         attributes.put("ip", ip);
 
         return true;
