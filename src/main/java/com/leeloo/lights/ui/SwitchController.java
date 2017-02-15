@@ -17,10 +17,12 @@ public class SwitchController {
     	//String ipAddress = request.getHeader("X-FORWARDED-FOR") == null ? request.getRemoteAddr(): request.getHeader("X-FORWARDED-FOR");
     	String ipAddress = (String) ha.getSessionAttributes().get("ip");;
     	String message ="" ;
+    	String status = switchDto.getState() ? "ON": "OFF";
     	if (switchDto.getIndex() == -1) {
-    		message = String.format("%s has set all switches to %s", ipAddress, Boolean.toString(switchDto.getState()));
+    		message = String.format("%s set all %s", ipAddress, status);
 		}else{
-			message = String.format("%s has set switch %d to %s", ipAddress, switchDto.getIndex() + 1, Boolean.toString(switchDto.getState()));
+			
+			message = String.format("%s set %d %s", ipAddress, switchDto.getIndex() + 1, status);
 		}
 		this.template.convertAndSend("/topic/console", new ConsoleMessageDto(message) );
 		this.template.convertAndSend("/topic/switches", switchDto );
