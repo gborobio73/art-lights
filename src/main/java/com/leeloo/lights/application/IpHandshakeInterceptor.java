@@ -12,10 +12,15 @@ public class IpHandshakeInterceptor implements HandshakeInterceptor {
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
             WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
 
+		String ipAddress = request.getHeaders().getFirst("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+			   ipAddress = request.getRemoteAddress().toString();
+		}
         // Set ip attribute to WebSocket session
-		String ip =Integer.toString(request.getRemoteAddress().getPort());
+		String port =Integer.toString(request.getRemoteAddress().getPort());
 		//String ip = request.getLocalAddress().getAddress().getHostAddress();
-        attributes.put("ip", ip);
+        attributes.put("port", port);
+        attributes.put("ip", ipAddress);
 
         return true;
     }

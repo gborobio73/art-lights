@@ -14,7 +14,6 @@ public class SwitchController {
     
     @MessageMapping("/send")
     public void broadcastSwitch(SwitchDto switchDto, SimpMessageHeaderAccessor ha)  {
-    	//String ipAddress = request.getHeader("X-FORWARDED-FOR") == null ? request.getRemoteAddr(): request.getHeader("X-FORWARDED-FOR");
     	String ipAddress = (String) ha.getSessionAttributes().get("ip");;
     	String message ="" ;
     	String status = switchDto.getState() ? "ON": "OFF";
