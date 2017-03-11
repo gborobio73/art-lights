@@ -14,14 +14,14 @@ public class SwitchController {
     
     @MessageMapping("/send")
     public void broadcastSwitch(SwitchDto switchDto, SimpMessageHeaderAccessor ha)  {
-    	String ipAddress = (String) ha.getSessionAttributes().get("ip");;
+    	String address = (String) ha.getSessionAttributes().get("port");;
     	String message ="" ;
     	String status = switchDto.getState() ? "ON": "OFF";
     	if (switchDto.getIndex() == -1) {
-    		message = String.format("%s set all %s", ipAddress, status);
+    		message = String.format("%s set all %s", address, status);
 		}else{
 			
-			message = String.format("%s set %d %s", ipAddress, switchDto.getIndex() + 1, status);
+			message = String.format("%s set %d %s", address, switchDto.getIndex() + 1, status);
 		}
 		this.template.convertAndSend("/topic/console", new ConsoleMessageDto(message) );
 		this.template.convertAndSend("/topic/switches", switchDto );
