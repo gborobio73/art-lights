@@ -16,9 +16,8 @@ public class IpHandshakeInterceptor implements HandshakeInterceptor {
 		if (ipAddress == null) {
 			   ipAddress = request.getRemoteAddress().toString();
 		}
-        // Set ip attribute to WebSocket session
-		String port =Integer.toString(request.getRemoteAddress().getPort());
-		//String ip = request.getLocalAddress().getAddress().getHostAddress();
+        String port =Integer.toString(request.getRemoteAddress().getPort());
+		
         attributes.put("port", port);
         attributes.put("ip", ipAddress);
 
