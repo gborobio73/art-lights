@@ -12,7 +12,7 @@ public class SwitchController {
 	@Autowired
 	private SimpMessagingTemplate template;
     
-    @MessageMapping("/send")
+    @MessageMapping("/broadcast")
     public void broadcastSwitch(SwitchDto switchDto, SimpMessageHeaderAccessor ha)  {
     	String address = (String) ha.getSessionAttributes().get("port");;
     	String message ="" ;

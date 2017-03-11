@@ -2,10 +2,8 @@ package com.leeloo.lights.ui;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Electric imp rest API emulator
  */
 @RestController
-@RequestMapping(value="/switch")
+@RequestMapping(value="/switches")
 public class ElectricImpController {
 	
 	@PostMapping
