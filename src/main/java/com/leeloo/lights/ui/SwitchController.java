@@ -11,6 +11,9 @@ public class SwitchController {
 	
 	@Autowired
 	private SimpMessagingTemplate template;
+	
+	@Autowired
+	private SwithesRepository repository;
     
     @MessageMapping("/broadcast")
     public void broadcastSwitch(SwitchDto switchDto, SimpMessageHeaderAccessor ha)  {
@@ -25,6 +28,8 @@ public class SwitchController {
 		}
 		this.template.convertAndSend("/topic/console", new ConsoleMessageDto(message) );
 		this.template.convertAndSend("/topic/switches", switchDto );
+		
+		this.repository.store(switchDto, address);
     }
 
 }
