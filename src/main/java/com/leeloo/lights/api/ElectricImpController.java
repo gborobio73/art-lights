@@ -25,11 +25,6 @@ public class ElectricImpController {
     	return ResponseEntity.ok("OK");
      }
     
-	@RequestMapping(value="/setall", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE) 
-    public ResponseEntity<?> setAllSwitches(@RequestBody SwitchState state) {    	
-    	return ResponseEntity.ok("OK");
-     }
-	
     @GetMapping() 
     public Boolean[] getSwitch() {    	
     	Boolean[] switchesDto =  {false, true, false, true, false, false, true, false};
