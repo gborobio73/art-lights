@@ -1,8 +1,9 @@
-package com.leeloo.lights.ui;
+package com.leeloo.lights.application;
 
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
+import com.leeloo.lights.api.SwitchDto;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;

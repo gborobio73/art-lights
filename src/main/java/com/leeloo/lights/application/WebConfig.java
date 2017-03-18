@@ -12,8 +12,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addMapping("/**")
 			.allowedOrigins("http://localhost:3000", "chrome-extension://fdmmgilgnpjigdojojpjoooidkmcomcm")
 			.allowedMethods("GET", "POST", "PUT", "DELETE")
-//			.allowedHeaders("header1", "header2", "header3")
-//			.exposedHeaders("header1", "header2")
 			.allowCredentials(true).maxAge(3600);
 	}
 }

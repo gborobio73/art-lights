@@ -1,4 +1,4 @@
-package com.leeloo.lights.ui;
+package com.leeloo.lights.api;
 
 public class SwitchDto {
 	private int index;

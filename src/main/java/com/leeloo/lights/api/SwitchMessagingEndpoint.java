@@ -1,4 +1,4 @@
-package com.leeloo.lights.ui;
+package com.leeloo.lights.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -6,8 +6,10 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+import com.leeloo.lights.application.SwithesRepository;
+
 @Controller
-public class SwitchController {
+public class SwitchMessagingEndpoint {
 	
 	@Autowired
 	private SimpMessagingTemplate template;
@@ -32,4 +34,17 @@ public class SwitchController {
 		this.repository.store(switchDto, address);
     }
 
+    public class ConsoleMessageDto {
+
+    	private String message;
+    	public ConsoleMessageDto() {}	
+    	
+    	public ConsoleMessageDto(String string) {
+    		this.message = string;
+    	}
+    	public String getString() {
+    		return message;
+    	}
+
+    }
 }

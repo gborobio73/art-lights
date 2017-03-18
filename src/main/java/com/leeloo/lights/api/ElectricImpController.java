@@ -1,4 +1,4 @@
-package com.leeloo.lights.ui;
+package com.leeloo.lights.api;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,5 +34,17 @@ public class ElectricImpController {
     public Boolean[] getSwitch() {    	
     	Boolean[] switchesDto =  {false, true, false, true, false, false, true, false};
     	return switchesDto;
+    }
+    
+    public class SwitchState {
+    	private boolean state;
+
+    	public boolean getState() {
+    		return state;
+    	}
+
+    	public void setState(boolean state) {
+    		this.state = state;
+    	}
     }
 }
