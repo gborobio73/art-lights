@@ -34,7 +34,7 @@ public class SwithesRepository {
 			}
 		}	
 		else{
-			System.out.println("Missing DB configuration");
+			System.out.println("** Missing DB configuration **");
 		}	
 	}
 }
